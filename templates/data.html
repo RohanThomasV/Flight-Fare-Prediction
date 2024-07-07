@@ -1,1 +1,294 @@
+<!Doctype Html>  
+<Html>     
+<Head>      
+<Title>     
+Flight price prediction 
+</Title>  
+<style type=text/css>   
+body   
+{  
+background-image:url("static/images/jet-7646082_1280.jpg");
+background-size:100%;
+height: 125vh;  
+margin-top: 80px;  
+padding: 30px;  
+background-size: cover;  
+font-family: sans-serif;  
+}  
+header {  
+background-color: rgb(107, 85, 194);  
+position: absolute;  
+left: auto;  
+right: 0;  
+top: 5px;  
+height: 30px;  
+display: flex;  
+align-items: center;  
+box-shadow: 0 0 25px 0 black;  
+}  
+header * {  
+display: inline-flex;  
+}  
+header li {  
+margin: 20px;  
+}  
+header li a {  
+text-size-adjust: 25px;
+color: rgb(1, 1, 12);  
+text-decoration: none;  
+}  
+.btn:link,
+.btn:visited {
+ text-transform: uppercase;
+ text-decoration: none;
+ color: rgb(27, 27, 27);
+ padding: 10px 30px;
+ border: 1px solid;
+ border-radius: 1000px;
+ display: inline-block;
+ transition: all .2s;
+ position: relative;
+}
 
+.btn:hover {
+ transform: translateY(-5px);
+ box-shadow: 0 10px 20px rgba(27, 27, 27, .5);
+}
+
+.btn:active {
+ transform: translateY(-3px);
+}
+
+.btn::after {
+ content: "";
+ display: inline-block;
+ height: 100%;
+ width: 100%;
+ border-radius: 100px;
+ top: 0;
+ left: 0;
+ position: absolute;
+ z-index: -1;
+ transition: all .3s;
+}
+
+.btn:hover::after {
+ background-color: rgb(0, 238, 255);
+ transform: scaleX(1.4) scaleY(1.5);
+ opacity: 0;
+}
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.heading-container {
+    position: relative;
+    text-align: center;
+}
+.project-container{
+    background: linear-gradient(135deg,  #393475,#fdf8f8);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    opacity: 0.7;
+
+}
+.creative-heading {
+    font-size: 3em;
+    color: rgb(37, 29, 67);
+    opacity: 0.6;
+    padding: 20px 40px;
+    background: linear-gradient(135deg, #fdf8f8, #393475);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.creative-heading::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://via.placeholder.com/800x600') no-repeat center center/cover;
+    opacity: 0.2;
+    z-index: -1;
+    border-radius: 10px;
+}
+
+.creative-heading span {
+    display: block;
+    font-size: 0.5em;
+    font-weight: normal;
+}
+button {
+  padding: 1.3em 3em;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+
+button:hover {
+  background-color: #23c483;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+button:active {
+  transform: translateY(-1px);
+}
+</style>   
+</Head>  
+<body>   
+ 
+<header>  
+<nav>  
+<ul>  
+<li>  
+<a href="#"> Home </a>  
+</li>  
+<li>  
+<a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjyh4zr8I-GAxUEumMGHSRCDygQFnoECBYQAQ&url=https%3A%2F%2Fwww.makemytrip.com%2Fflights%2F&usg=AOvVaw3Yz0Khais54oMObgFzAIFV&opi=89978449"> About </a>  
+</li>  
+<li>  
+<a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjyh4zr8I-GAxUEumMGHSRCDygQFnoECBYQAQ&url=https%3A%2F%2Fwww.makemytrip.com%2Fflights%2F&usg=AOvVaw3Yz0Khais54oMObgFzAIFV&opi=89978449"> Contact </a>  
+</li>  
+ 
+ 
+</ul>  
+</nav>  
+</header>  
+<form action="/predict" , method="post"> 
+<center>
+    
+    <div class="heading-container">
+        <h1 class="creative-heading">Flight Fare Predictor</h1>
+    </div>
+<div class ="project-container">
+<label style="color:rgb(37, 29, 67);;font-size: .9rem;font-weight: bold;">Airlines</label>
+<select name="airlines" style="max-width: 190px;
+height: 44px;
+background-color: #05060f0a;
+border-radius: .5rem;
+padding: 0 1rem;`
+border: 2px solid transparent;
+font-size: 1rem;
+transition: border-color .3s cubic-bezier(.25,.01,.25,1) 0s, color .3s cubic-bezier(.25,.01,.25,1) 0s,background .2s cubic-bezier(.25,.01,.25,1) 0s;">
+<option  value="0">Airindia</option>
+<option  value="1">Indigo</option>
+<option  value="2">JetAirways</option>
+<option  value="3">Emirates</option>
+<option  value="4">SpiceJet</option>
+<option  value="5">other</option>
+
+</select>
+<label style="color:rgb(37, 29, 67);;font-size: .9rem;font-weight: bold;">Source</label>
+<select name="source" style="max-width: 190px;
+height: 44px;
+background-color: #05060f0a;
+border-radius: .5rem;
+padding: 0 1rem;
+border: 2px solid transparent;
+font-size: 1rem;
+transition: border-color .3s cubic-bezier(.25,.01,.25,1) 0s, color .3s cubic-bezier(.25,.01,.25,1) 0s,background .2s cubic-bezier(.25,.01,.25,1) 0s;">
+<option  value="0">Bangalore</option>
+<option  value="1">Chennai</option>
+<option  value="2">Delhi</option>
+<option  value="3">Kolkata</option>
+<option  value="4">Mumbai</option>
+</select>
+<label style="color:rgb(37, 29, 67);;font-size: .9rem;font-weight: bold;">Destination</label>
+<select name="destination" style="max-width: 190px;
+height: 44px;
+background-color: #05060f0a;
+border-radius: .5rem;
+padding: 0 1rem;
+border: 2px solid transparent;
+font-size: 1rem;
+transition: border-color .3s cubic-bezier(.25,.01,.25,1) 0s, color .3s cubic-bezier(.25,.01,.25,1) 0s,background .2s cubic-bezier(.25,.01,.25,1) 0s;">
+<option  value="0">Bangalore</option>
+<option  value="1">Cochin</option>
+<option  value="2">Delhi</option>
+<option  value="3">Hyderabad</option>
+<option  value="4">Kolkata</option>
+<option  value="5">NewDelhi</option>
+</select>
+<label style="color:rgb(37, 29, 67);;font-size: .9rem;font-weight: bold;">Total Stops</label>
+<select name="stops" style="max-width: 190px;
+height: 44px;
+background-color: #05060f0a;
+border-radius: .5rem;
+padding: 0 1rem;
+border: 2px solid transparent;
+font-size: 1rem;
+transition: border-color .3s cubic-bezier(.25,.01,.25,1) 0s, color .3s cubic-bezier(.25,.01,.25,1) 0s,background .2s cubic-bezier(.25,.01,.25,1) 0s;">
+<option  value="0">Non Stop</option>
+<option  value="1">1 Stops</option>
+<option  value="2">2 Stops</option>
+<option  value="3">3 Stops</option>
+<option  value="4">4 Stops</option>
+</select><br><br><br><br>
+<label style="color:rgb(37, 29, 67);;font-size: .9rem;font-weight: bold;">Departure Time</label>
+<input style="max-width: 190px;
+height: 44px;
+background-color: #05060f0a;
+border-radius: .5rem;
+padding: 0 1rem;
+border: 2px solid transparent;
+font-size: 1rem;
+transition: border-color .3s cubic-bezier(.25,.01,.25,1) 0s, color .3s cubic-bezier(.25,.01,.25,1) 0s,background .2s cubic-bezier(.25,.01,.25,1) 0s;" type="time" name="dtime">
+<label style="color:rgb(37, 29, 67);;font-size: .9rem;font-weight: bold;">Journey Date</label>
+<input style="max-width: 190px;
+height: 44px;
+background-color: #05060f0a;
+border-radius: .5rem;
+padding: 0 1rem;
+border: 2px solid transparent;
+font-size: 1rem;
+transition: border-color .3s cubic-bezier(.25,.01,.25,1) 0s, color .3s cubic-bezier(.25,.01,.25,1) 0s,background .2s cubic-bezier(.25,.01,.25,1) 0s;" type="date" name="jdate">
+<br><br><br>
+<label style="color:rgb(37, 29, 67);;font-size: .9rem;font-weight: bold;">Duration Time</label>
+<input style="max-width: 190px;
+height: 44px;
+background-color: #05060f0a;
+border-radius: .5rem;
+padding: 0 1rem;
+border: 2px solid transparent;
+font-size: 1rem;
+transition: border-color .3s cubic-bezier(.25,.01,.25,1) 0s, color .3s cubic-bezier(.25,.01,.25,1) 0s,background .2s cubic-bezier(.25,.01,.25,1) 0s;" type="time" name="duratime">
+ <label style="color:rgb(37, 29, 67);;font-size: .9rem;font-weight: bold;">Arrival Time</label>
+<input style="max-width: 190px;
+height: 44px;
+background-color: #05060f0a;
+border-radius: .5rem;
+padding: 0 1rem;
+border: 2px solid transparent;
+font-size: 1rem;
+transition: border-color .3s cubic-bezier(.25,.01,.25,1) 0s, color .3s cubic-bezier(.25,.01,.25,1) 0s,background .2s cubic-bezier(.25,.01,.25,1) 0s;" type="time" name="arrtime">
+<br><br><br>
+<button type="submit"> SUBMIT;</button>
+</form>
+<h3>{{result}}</h3>
+</center>
+</div>
+</body>
+</html>
